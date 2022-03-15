@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">OsirisNFT</string>
+    <string name="app_name">Osiris NFT</string>
+
+    <string name="text">texte</string>
+    <string name="image">image</string>
+    <string name="number">0</string>
 </resources>

@@ -11,12 +11,4 @@ class PublicationData(
     @SerializedName("description") val description: String,
     @SerializedName("hashtags") val hashtags: String,
     @SerializedName("likes_count") val likes: Int
-    ): Serializable {
-    fun getThumbnailURL(): String? {
-        return if (image.isNotEmpty()) {
-            image
-        } else {
-            null
-        }
-    }
-}
+    ): Serializable {}

@@ -46,12 +46,20 @@ class HomeActivity : AppCompatActivity() {
             parameters,
             {
                 Log.d("debug", it.toString(2))
+                parseResult(it)
             },
             {
                 Log.d("debug", "$it")
             }
         )
         queue.add(request)
+    }
+
+    private fun parseResult(json: JSONObject) {
+
+
+        //si parse ok =>
+        //setPubList(it)
     }
 
     companion object {

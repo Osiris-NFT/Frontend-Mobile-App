@@ -37,7 +37,7 @@ class PublicationAdapter(private val listPub: List<PublicationData>, private val
 
         Picasso
             .get()
-            .load(publication.getThumbnailURL())
+            .load(publication.image)
             .into(holder.image)
 
         holder.layout.setOnClickListener {

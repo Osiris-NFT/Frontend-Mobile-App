@@ -23,20 +23,20 @@ class HomeActivity : AppCompatActivity() {
         makeRequest()
     }
 
-    fun setPubList(publications: List<PublicationData>) {
+    fun setPubList(publications: List<PublicationData>) { // envoie les données à l'adapter pour qu'il complète les champs
         binding.listOfPublication.layoutManager = LinearLayoutManager(this)
         binding.listOfPublication.adapter = PublicationAdapter(publications) { selectedPub ->
             showDetails(selectedPub)
         }
     }
 
-    private fun showDetails(pub: PublicationData) {
+    private fun showDetails(pub: PublicationData) { // ouvre une publication en particulier
         val intent = Intent(this, DetailsActivity::class.java)
         intent.putExtra(SELECTED_PUB, pub)
         startActivity(intent)
     }
 
-    private fun makeRequest() {
+    private fun makeRequest() { // requête json
         val queue = Volley.newRequestQueue(this)
         val url = Constants.URL
         val parameters = JSONObject()
@@ -55,11 +55,11 @@ class HomeActivity : AppCompatActivity() {
         queue.add(request)
     }
 
-    private fun parseResult(json: JSONObject) {
+    private fun parseResult(json: JSONObject) { // parse des données en une liste de publications
 
 
-        //si parse ok =>
-        //setPubList(it)
+        // si parse ok => it de type List<PublicationData>
+        // setPubList(it)
     }
 
     companion object {

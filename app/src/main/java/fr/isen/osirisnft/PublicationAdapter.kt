@@ -22,7 +22,7 @@ class PublicationAdapter(private val listPub: List<PublicationData>, private val
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PublicationViewHolder {
-        val binding =CellPublicationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = CellPublicationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PublicationViewHolder(binding)
     }
 

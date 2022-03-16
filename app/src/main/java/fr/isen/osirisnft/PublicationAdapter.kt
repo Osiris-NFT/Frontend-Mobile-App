@@ -30,7 +30,7 @@ class PublicationAdapter(private val listPub: List<PublicationData>, private val
         val publication = listPub[position]
 
         holder.title.text = publication.title
-        holder.author.text = publication.username
+        holder.author.text = publication.user
         holder.description.text = publication.description
         holder.date.text = publication.date
         holder.likes.text = publication.likes.toString()

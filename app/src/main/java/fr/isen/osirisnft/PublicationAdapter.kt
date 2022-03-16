@@ -10,7 +10,7 @@ import com.squareup.picasso.Picasso
 import fr.isen.osirisnft.data.PublicationData
 import fr.isen.osirisnft.databinding.CellPublicationBinding
 
-class PublicationAdapter(private val listPub: List<PublicationData>, private val pubClickListener: (PublicationData) -> Unit): RecyclerView.Adapter<PublicationAdapter.PublicationViewHolder>() {
+class PublicationAdapter(private val listPub: ArrayList<PublicationData>, private val pubClickListener: (PublicationData) -> Unit): RecyclerView.Adapter<PublicationAdapter.PublicationViewHolder>() {
     class PublicationViewHolder(binding: CellPublicationBinding): RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.pubTitle
         val author: TextView = binding.pubAuthor
@@ -29,15 +29,15 @@ class PublicationAdapter(private val listPub: List<PublicationData>, private val
     override fun onBindViewHolder(holder: PublicationViewHolder, position: Int) {
         val publication = listPub[position]
 
-        holder.title.text = publication.title
-        holder.author.text = publication.user
+        holder.title.text = publication.publication_name
+        holder.author.text = publication.user_name
         holder.description.text = publication.description
-        holder.date.text = publication.date
-        holder.likes.text = publication.likes.toString()
+        holder.date.text = publication.publication_date
+        holder.likes.text = publication.likes_count.toString()
 
         Picasso
             .get()
-            .load(publication.image)
+            .load(publication.media_url)
             .into(holder.image)
 
         holder.layout.setOnClickListener {

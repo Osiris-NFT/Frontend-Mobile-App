@@ -65,12 +65,12 @@ class HomeActivity : AppCompatActivity() {
         val publications: JSONArray = json["publications"] as JSONArray
         val arraylistofpub = ArrayList<PublicationData>()
         for (i in 0 until publications.length()) {
-            Log.d("PUBLICATION", publications.get(i).toString())
+            Log.d("PARSE PUBLICATION: PUBLICATION", publications.get(i).toString())
             val arraylistofcom = ArrayList<CommentData>()
             val publication = publications.get(i) as JSONObject
             val comments = publication["comments"] as JSONArray
             for (y in 0 until comments.length()){
-                Log.d("COMMENT", comments.get(y).toString())
+                Log.d("PARSE PUBLICATION: COMMENT", comments.get(y).toString())
                 val arraylistofrep = ArrayList<ReplyData>()
                 val comment = comments.get(y) as JSONObject
                 val replies = comment["replies"] as JSONArray
@@ -81,9 +81,10 @@ class HomeActivity : AppCompatActivity() {
                         reply["_id"] as String,
                         reply["user"] as String,
                         reply["publication_date"] as String,
+                        reply["target_user"] as String,
                         reply["content"] as String,
                         reply["likes_count"] as Int)
-                    Log.d("REPLY AS REPLYDATA", replydata.toString())
+                    Log.d("PARSE PUBLICATION: REPLY AS REPLYDATA", replydata.toString())
                     arraylistofrep.add(replydata)
                 }
                 val commentdata = CommentData(
@@ -116,11 +117,8 @@ class HomeActivity : AppCompatActivity() {
                 arraylistofcom
             )
             arraylistofpub.add(publicationdata)
-            //Log.d("REQUEST", array.get(i).toString())
-
-            //arraylist.add(array.get(i) as PublicationData)
         }
-        Log.d("PUBLICATIONS AS ARRAYLIST", arraylistofpub.toString())
+        Log.d("PARSE PUBLICATION: PUBLICATIONS AS ARRAYLIST", arraylistofpub.toString())
         setPubList(arraylistofpub)
     }
 

@@ -7,6 +7,7 @@ class ReplyData(
     val _id: String,
     val user: String,
     val publication_date: String,
+    val target_user: String,
     val content: String,
     val likes_count: Int
 ){}

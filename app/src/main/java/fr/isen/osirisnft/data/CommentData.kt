@@ -9,5 +9,5 @@ class CommentData(
     @SerializedName("publication_date") val date: String,
     @SerializedName("content") val content: String,
     @SerializedName("likes_count") val likes: Int,
-    @SerializedName("replies") val replies: List<ReplyData>
+    @SerializedName("replies") val replies: ArrayList<ReplyData>
 ): Serializable {}

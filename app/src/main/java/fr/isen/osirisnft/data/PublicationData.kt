@@ -13,7 +13,7 @@ class PublicationData(
     @SerializedName("media_url") val image: String,
     @SerializedName("category") val category: String,
     @SerializedName("description") val description: String,
-    @SerializedName("hashtags") val hashtags: List<String>,
+    @SerializedName("hashtags") val hashtags: ArrayList<String>,
     @SerializedName("likes_count") val likes: Int,
-    @SerializedName("comments") val comments: List<CommentData>
+    @SerializedName("comments") val comments: ArrayList<CommentData>
     ): Serializable {}

@@ -62,7 +62,13 @@ class HomeActivity : AppCompatActivity() {
         val array: JSONArray = json["publications"] as JSONArray
         val arraylist = ArrayList<PublicationData>()
         for (i in 0 until array.length()) {
-            Log.d("REQUEST", array.get(i).toString())
+            var publication = array.get(i) as JSONObject
+            var comments = publication["comments"] as JSONArray
+            for (i in 0 until comments.length()){
+                Log.d("COMMENTS", comments.get(i).toString())
+            }
+            Log.d("PUBLICATIONS", publication.toString())
+            //Log.d("REQUEST", array.get(i).toString())
 
             //arraylist.add(array.get(i) as PublicationData)
         }

@@ -14,7 +14,6 @@ import fr.isen.osirisnft.data.PublicationData
 import fr.isen.osirisnft.data.ReplyData
 import fr.isen.osirisnft.databinding.ActivityHomeBinding
 import org.json.JSONArray
-import org.json.JSONException
 import org.json.JSONObject
 
 
@@ -29,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    fun setPubList(publications: ArrayList<PublicationData>) { // envoie les données à l'adapter pour qu'il complète les champs
+    private fun setPubList(publications: ArrayList<PublicationData>) { // envoie les données à l'adapter pour qu'il complète les champs
         binding.listOfPublication.layoutManager = LinearLayoutManager(this)
         binding.listOfPublication.adapter = PublicationAdapter(publications) { selectedPub ->
             showDetails(selectedPub)
@@ -64,16 +63,19 @@ class HomeActivity : AppCompatActivity() {
     private fun parsePublications(json: JSONObject) { // parse des données en une liste de publications
         val publications: JSONArray = json["publications"] as JSONArray
         val arraylistofpub = ArrayList<PublicationData>()
+
         for (i in 0 until publications.length()) {
             Log.d("PARSE PUBLICATION: PUBLICATION", publications.get(i).toString())
             val arraylistofcom = ArrayList<CommentData>()
             val publication = publications.get(i) as JSONObject
             val comments = publication["comments"] as JSONArray
+
             for (y in 0 until comments.length()){
                 Log.d("PARSE PUBLICATION: COMMENT", comments.get(y).toString())
                 val arraylistofrep = ArrayList<ReplyData>()
                 val comment = comments.get(y) as JSONObject
                 val replies = comment["replies"] as JSONArray
+
                 for (z in 0 until replies.length()){
                     val reply = replies.get(z) as JSONObject
                     //Log.d("REPLY", reply.toString())
@@ -99,6 +101,7 @@ class HomeActivity : AppCompatActivity() {
             }
             val arraylistofhash = ArrayList<String>()
             val hashtags = publication["hashtags"] as JSONArray
+
             for (w in 0 until hashtags.length()){
                 val hashtag = hashtags.get(w) as String
                 arraylistofhash.add(hashtag)
@@ -119,6 +122,7 @@ class HomeActivity : AppCompatActivity() {
             arraylistofpub.add(publicationdata)
         }
         Log.d("PARSE PUBLICATION: PUBLICATIONS AS ARRAYLIST", arraylistofpub.toString())
+
         setPubList(arraylistofpub)
     }
 

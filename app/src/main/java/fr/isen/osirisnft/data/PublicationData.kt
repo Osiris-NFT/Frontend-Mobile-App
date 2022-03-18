@@ -1,8 +1,6 @@
 package fr.isen.osirisnft.data
 
-import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-import java.lang.StringBuilder
 
 class PublicationData(
     val _id: String,
@@ -14,6 +12,6 @@ class PublicationData(
     val category: String,
     val description: String,
     val hashtags: ArrayList<String>,
-    val likes_count: Int,
+    var likes_count: Int,
     val comments: ArrayList<CommentData>
     ): Serializable {}

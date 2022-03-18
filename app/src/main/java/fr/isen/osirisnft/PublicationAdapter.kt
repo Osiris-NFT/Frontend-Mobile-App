@@ -1,7 +1,9 @@
 package fr.isen.osirisnft
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -18,6 +20,7 @@ class PublicationAdapter(private val listPub: ArrayList<PublicationData>, privat
         val likes: TextView = binding.pubLikes
         val date: TextView = binding.pubDate
         val image: ImageView = binding.pubImage
+        val likeButton: CheckBox = binding.pubLikeButton
         val layout: CardView = binding.root
     }
 
@@ -26,6 +29,7 @@ class PublicationAdapter(private val listPub: ArrayList<PublicationData>, privat
         return PublicationViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: PublicationViewHolder, position: Int) {
         val publication = listPub[position]
 
@@ -39,6 +43,16 @@ class PublicationAdapter(private val listPub: ArrayList<PublicationData>, privat
             .get()
             .load(publication.media_url)
             .into(holder.image)
+
+        holder.likeButton.setOnClickListener {
+            if (holder.likeButton.isChecked) {
+                publication.likes_count += 1
+                holder.likes.text = publication.likes_count.toString()
+            } else {
+                publication.likes_count-= 1
+                holder.likes.text = publication.likes_count.toString()
+            }
+        }
 
         holder.layout.setOnClickListener {
             pubClickListener.invoke(publication)

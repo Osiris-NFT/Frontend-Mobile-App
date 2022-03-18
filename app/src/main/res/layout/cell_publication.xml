@@ -27,12 +27,14 @@
 
         <ImageView
             android:id="@+id/pubImage"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:adjustViewBounds="true"
             android:contentDescription="@string/image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pubTitle"
             app:layout_constraintVertical_bias="0.0"
@@ -42,7 +44,7 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -55,8 +57,8 @@
             <CheckBox
                 android:id="@+id/pubLikeButton"
                 style="@style/likeButton"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:button="@drawable/ic_heart"
                 tools:ignore="TouchTargetSizeCheck" />

@@ -1,5 +1,7 @@
 package fr.isen.osirisnft
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,10 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import fr.isen.osirisnft.data.CommentData
-import fr.isen.osirisnft.data.Constants
-import fr.isen.osirisnft.data.PublicationData
-import fr.isen.osirisnft.data.ReplyData
+import fr.isen.osirisnft.data.*
 import fr.isen.osirisnft.databinding.ActivityHomeBinding
 import org.json.JSONArray
 import org.json.JSONObject
@@ -24,14 +23,13 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        makeRequest()
-
+        getPubRequest()
     }
 
     private fun setPubList(publications: ArrayList<PublicationData>) { // envoie les données à l'adapter pour qu'il complète les champs
         binding.listOfPublication.layoutManager = LinearLayoutManager(this)
-        binding.listOfPublication.adapter = PublicationAdapter(publications) { selectedPub ->
-            showDetails(selectedPub)
+        binding.listOfPublication.adapter = PublicationAdapter(publications) {
+            showDetails(it)
         }
     }
 
@@ -41,9 +39,10 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun makeRequest() { // requête json
+    private fun getPubRequest() { // requête json
         val queue = Volley.newRequestQueue(this)
-        val url = Constants.URL
+        val url = Constants.PublicationServiceURL + Constants.NewPublications + Constants.DateParam
+        //val url = Constants.PublicationServiceURL + "/api/EliseLaBalise/publications"
         val parameters = JSONObject()
         val request = JsonObjectRequest(
             Request.Method.GET,
@@ -61,7 +60,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun parsePublications(json: JSONObject) { // parse des données en une liste de publications
-        val publications: JSONArray = json["publications"] as JSONArray
+        val publications: JSONArray = json["new"] as JSONArray
+        //val publications: JSONArray = json["publications"] as JSONArray
         val arraylistofpub = ArrayList<PublicationData>()
 
         for (i in 0 until publications.length()) {

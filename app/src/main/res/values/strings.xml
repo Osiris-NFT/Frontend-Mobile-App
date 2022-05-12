@@ -4,4 +4,18 @@
     <string name="text">texte</string>
     <string name="image">image</string>
     <string name="number">0</string>
+
+    <string name="input_comment">Commenter</string>
+    <string name="add_image">Choisir une image</string>
+    <string name="title">Titre</string>
+    <string name="description">Description</string>
+    <string name="category">Catégorie</string>
+    <string name="publish">Publier</string>
+
+    <string-array name="categories">
+        <item>Photographie</item>
+        <item>Pixel Art</item>
+        <item>Dessin</item>
+    </string-array>
+
 </resources>

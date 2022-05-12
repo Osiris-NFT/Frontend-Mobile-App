@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 class ReplyData(
-    val _id: String,
-    val user: String,
-    val publication_date: String,
-    val target_user: String,
-    val content: String,
-    val likes_count: Int
-){}
+    @SerializedName("id") val _id: String,
+    @SerializedName("user") val user: String,
+    @SerializedName("date") val publication_date: String,
+    @SerializedName("target") val target_user: String,
+    @SerializedName("content") val content: String,
+    @SerializedName("likes") val likes_count: Int
+): Serializable {}

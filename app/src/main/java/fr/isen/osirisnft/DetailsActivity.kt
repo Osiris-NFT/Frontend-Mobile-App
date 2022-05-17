@@ -2,6 +2,7 @@ package fr.isen.osirisnft
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,6 +28,7 @@ import kotlin.collections.ArrayList
 class DetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsBinding
     private lateinit var currentPub: PublicationData
+    lateinit var currentUser: String
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +37,9 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         currentPub = intent.getSerializableExtra(HomeActivity.SELECTED_PUB) as PublicationData
+        currentUser = intent.getStringExtra(HomeActivity.CURRENT_USER).toString()
 
+        navigationBar()
         setContent()
         displayComment()
     }
@@ -63,7 +67,7 @@ class DetailsActivity : AppCompatActivity() {
 
             val newCom = CommentData(
                 "",
-                "test_user",
+                "$currentUser",
                 LocalDateTime.now().toString(),
                 newComment,
                 0,
@@ -81,7 +85,7 @@ class DetailsActivity : AppCompatActivity() {
     private fun addCommentRequest(url: String, commentContent: String) { // requête json
         val queue = Volley.newRequestQueue(this)
         val parameters = JSONObject()
-        parameters.put("user", "test_user")
+        parameters.put("user", "$currentUser")
         parameters.put("content", commentContent)
         val request = JsonObjectRequest(
             Request.Method.POST,
@@ -96,6 +100,32 @@ class DetailsActivity : AppCompatActivity() {
         )
         Log.d("testlog", request.toString())
         queue.add(request)
+    }
+
+    private fun navigationBar() {
+        binding.navBar.selectedItemId = R.id.homeNav
+        binding.navBar.setOnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.homeNav -> {
+                    startActivity(Intent(this, HomeActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    true
+                }
+                R.id.pubNav -> {
+                    startActivity(Intent(this, PublicationActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    true
+                }
+                R.id.profileNav -> {
+                    startActivity(Intent(this, ProfileActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
     }
 
     companion object {

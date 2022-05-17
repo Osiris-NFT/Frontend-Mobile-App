@@ -15,12 +15,15 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.squareup.picasso.Picasso
 import fr.isen.osirisnft.data.Constants
+import fr.isen.osirisnft.data.ParseData
 import fr.isen.osirisnft.data.PublicationData
 import fr.isen.osirisnft.databinding.CellPublicationBinding
+import okhttp3.internal.wait
+import org.json.JSONArray
 import org.json.JSONObject
 import kotlin.coroutines.coroutineContext
 
-class PublicationAdapter(private val listPub: ArrayList<PublicationData>, private val pubClickListener: (PublicationData) -> Unit): RecyclerView.Adapter<PublicationAdapter.PublicationViewHolder>() {
+class PublicationAdapter(private val listPub: ArrayList<PublicationData>, private val currentUser: String, private val pubClickListener: (PublicationData) -> Unit): RecyclerView.Adapter<PublicationAdapter.PublicationViewHolder>() {
     class PublicationViewHolder(binding: CellPublicationBinding): RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.pubTitle
         val author: TextView = binding.pubAuthor
@@ -53,19 +56,22 @@ class PublicationAdapter(private val listPub: ArrayList<PublicationData>, privat
             .load(Constants.PublicationServiceURL + publication.media_url)
             .into(holder.image)
 
-
         val context = holder.likeButton.context
+
+        isLikedRequest(Constants.isLikedURL(publication._id, currentUser), context, holder)
+
+
         holder.likeButton.setOnClickListener {
             if (holder.likeButton.isChecked) {
                 publication.likes_count += 1
                 holder.likes.text = publication.likes_count.toString()
 
-                likesCountRequest(Constants.likeURL(publication._id), context)
+                likesCountRequest(Constants.likeURL(publication._id, currentUser), context)
             } else {
                 publication.likes_count -= 1
                 holder.likes.text = publication.likes_count.toString()
 
-                likesCountRequest(Constants.unlikeURL(publication._id), context)
+                likesCountRequest(Constants.unlikeURL(publication._id, currentUser), context)
             }
         }
 
@@ -76,6 +82,30 @@ class PublicationAdapter(private val listPub: ArrayList<PublicationData>, privat
 
     override fun getItemCount(): Int {
         return listPub.count()
+    }
+
+    private fun isLikedRequest(url: String, context: Context, holder: PublicationViewHolder): JSONObject {
+        var response = JSONObject()
+
+        val queue = Volley.newRequestQueue(context)
+        val parameters = JSONObject()
+        val request = JsonObjectRequest(
+            Request.Method.GET,
+            url,
+            parameters,
+            {
+                Log.d("testlog", it.toString(2))
+
+                if (it["is_liked"] == true) {
+                    holder.likeButton.isChecked = true
+                }
+            },
+            {
+                Log.d("testlog", "$it")
+            }
+        )
+        queue.add(request)
+        return response
     }
 
     private fun likesCountRequest(url: String, context: Context) { // requête json

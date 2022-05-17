@@ -18,13 +18,24 @@
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".PublicationActivity"
+            android:name=".UserNftActivity"
             android:exported="false" />
+        <activity
+            android:name=".UserPubActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PublicationActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".DetailsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

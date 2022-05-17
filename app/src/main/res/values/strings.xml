@@ -5,6 +5,15 @@
     <string name="image">image</string>
     <string name="number">0</string>
 
+    <string name="home">Accueil</string>
+    <string name="add_pub">Publier</string>
+    <string name="profile">Profil</string>
+
+    <string name="welcome">Bienvenue sur Osiris NFT</string>
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="password">Mot de passe</string>
+    <string name="connect">Se connecter</string>
+
     <string name="input_comment">Commenter</string>
     <string name="add_image">Choisir une image</string>
     <string name="title">Titre</string>
@@ -12,10 +21,15 @@
     <string name="category">Catégorie</string>
     <string name="publish">Publier</string>
 
+    <string name="my_pub">Mes publications</string>
+    <string name="my_nft">Mes NFTs</string>
+
     <string-array name="categories">
         <item>Photographie</item>
         <item>Pixel Art</item>
         <item>Dessin</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

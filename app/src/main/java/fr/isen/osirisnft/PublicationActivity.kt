@@ -19,12 +19,16 @@ import org.json.JSONObject
 class PublicationActivity : AppCompatActivity() {
     lateinit var binding: ActivityPublicationBinding
     lateinit var uri: Uri
+    private lateinit var currentUser: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPublicationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        currentUser = intent.getStringExtra(HomeActivity.CURRENT_USER).toString()
+
+        navigationBar()
         listenAddClick()
     }
 
@@ -39,6 +43,7 @@ class PublicationActivity : AppCompatActivity() {
             postPubRequest()
 
             val intent = Intent(this, HomeActivity::class.java)
+            intent.putExtra(CURRENT_USER, currentUser)
             startActivity(intent)
         }
     }
@@ -60,7 +65,7 @@ class PublicationActivity : AppCompatActivity() {
         val parameters = JSONObject()
 
         parameters.put("publication_name", title)
-        parameters.put("user_name", "test_user")
+        parameters.put("user_name", "$currentUser")
         parameters.put("description", description)
         parameters.put("content_type", "image")
         parameters.put("category", category)
@@ -108,8 +113,34 @@ class PublicationActivity : AppCompatActivity() {
         UploadUtility(this, pubId).uploadFile(this.uri)
     }
 
+    private fun navigationBar() {
+        binding.navBar.selectedItemId = R.id.pubNav
+        binding.navBar.setOnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.homeNav -> {
+                    startActivity(Intent(this, HomeActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    true
+                }
+                R.id.pubNav -> {
+                    startActivity(Intent(this, PublicationActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    true
+                }
+                R.id.profileNav -> {
+                    startActivity(Intent(this, ProfileActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+    }
 
     companion object {
         const val REQUEST_CODE = 1
+        const val CURRENT_USER = "CURRENT_USER"
     }
 }

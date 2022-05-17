@@ -15,7 +15,7 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="likeButton">
+    <style name="drawableButton">
         <item name="android:buttonTint">@animator/button_tint_dark</item>
     </style>
 
@@ -29,5 +29,9 @@
 
     <style name="linearLayoutBack">
         <item name="android:background">@color/default_grey</item>
+    </style>
+
+    <style name="navBarBack">
+        <item name="android:background">@color/black</item>
     </style>
 </resources>

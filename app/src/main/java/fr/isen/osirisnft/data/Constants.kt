@@ -9,13 +9,17 @@ class Constants {
         const val NewPublications = "/api/publications/new"
         const val DateParam = "?hours_time_delta=24"
 
-        // PATCH
-        fun likeURL(publication_id: String): String {
-            return "$PublicationServiceURL/api/publications/$publication_id/upvote"
+        fun isLikedURL(publication_id: String, user: String): String {
+            return "$PublicationServiceURL/api/is/$publication_id/liked_by/$user"
         }
 
-        fun unlikeURL(publication_id: String): String {
-            return "$PublicationServiceURL/api/publications/$publication_id/downvote"
+        // PATCH
+        fun likeURL(publication_id: String, user: String): String {
+            return "$PublicationServiceURL/api/publications/$publication_id/upvote_by/$user"
+        }
+
+        fun unlikeURL(publication_id: String, user: String): String {
+            return "$PublicationServiceURL/api/publications/$publication_id/downvoted_by/$user"
         }
 
         // POST

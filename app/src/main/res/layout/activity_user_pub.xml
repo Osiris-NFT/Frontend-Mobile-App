@@ -10,7 +10,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintBottom_toTopOf="@+id/navBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,7 +22,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/detailsTitle"
+                android:id="@+id/userPubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -32,7 +32,7 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/detailsImage"
+                android:id="@+id/userPubImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -43,7 +43,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/detailsDate"
+                android:id="@+id/userPubDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -53,7 +53,7 @@
                 android:textColor="@color/light_grey_text" />
 
             <TextView
-                android:id="@+id/detailsAuthor"
+                android:id="@+id/userPubAuthor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -63,7 +63,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/detailsDescription"
+                android:id="@+id/userPubDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -72,7 +72,7 @@
                 android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listOfComment"
+                android:id="@+id/userPubComments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp">
@@ -81,40 +81,6 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        style="@style/linearLayoutBack"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/navBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-        <EditText
-            android:id="@+id/inputComment"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/input_comment"
-            android:inputType="text"
-            tools:ignore="TouchTargetSizeCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
-
-        <ImageButton
-            android:id="@+id/sendCommentButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/input_comment"
-            app:srcCompat="@drawable/ic_send"
-            tools:ignore="TouchTargetSizeCheck" />
-    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navBar"

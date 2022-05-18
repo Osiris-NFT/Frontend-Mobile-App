@@ -14,11 +14,13 @@ import fr.isen.osirisnft.databinding.ActivityHomeBinding
 import fr.isen.osirisnft.network.Constants
 import fr.isen.osirisnft.profile.ProfileActivity
 import org.json.JSONObject
+import java.nio.file.WatchEvent
 
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
     lateinit var currentUser: String
+    lateinit var wallet: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +28,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         currentUser = intent.getStringExtra(LoginActivity.CURRENT_USER).toString()
+        wallet = intent.getStringExtra(LoginActivity.WALLET).toString()
 
         navigationBar()
         getPubRequest()
@@ -42,6 +45,7 @@ class HomeActivity : AppCompatActivity() {
         val intent = Intent(this, DetailsActivity::class.java)
         intent.putExtra(SELECTED_PUB, pub)
         intent.putExtra(CURRENT_USER, currentUser)
+        intent.putExtra(WALLET, wallet)
         startActivity(intent)
     }
 
@@ -72,22 +76,26 @@ class HomeActivity : AppCompatActivity() {
             when(item.itemId) {
                 R.id.homeNav -> {
                     startActivity(Intent(this, HomeActivity::class.java)
-                        .putExtra(CURRENT_USER, currentUser))
+                        .putExtra(CURRENT_USER, currentUser)
+                        .putExtra(WALLET, wallet))
                     true
                 }
                 R.id.pubNav -> {
                     startActivity(Intent(this, PublicationActivity::class.java)
-                        .putExtra(CURRENT_USER, currentUser))
+                        .putExtra(CURRENT_USER, currentUser)
+                        .putExtra(WALLET, wallet))
                     true
                 }
                 R.id.favNav -> {
                     startActivity(Intent(this, FavoriteActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                        .putExtra(CURRENT_USER, currentUser)
+                        .putExtra(  WALLET, wallet))
                     true
                 }
                 R.id.profileNav -> {
                     startActivity(Intent(this, ProfileActivity::class.java)
-                        .putExtra(CURRENT_USER, currentUser))
+                        .putExtra(CURRENT_USER, currentUser)
+                        .putExtra(WALLET, wallet))
                     true
                 }
                 else -> {
@@ -100,5 +108,6 @@ class HomeActivity : AppCompatActivity() {
     companion object {
         const val SELECTED_PUB = "SELECTED_PUB"
         const val CURRENT_USER = "CURRENT_USER"
+        const val WALLET = "WALLET"
     }
 }

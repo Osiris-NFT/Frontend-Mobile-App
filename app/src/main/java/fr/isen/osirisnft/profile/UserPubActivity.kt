@@ -18,6 +18,7 @@ class UserPubActivity : AppCompatActivity() {
     lateinit var binding: ActivityUserPubBinding
     private lateinit var currentPub: PublicationData
     private lateinit var currentUser: String
+    lateinit var wallet: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +27,7 @@ class UserPubActivity : AppCompatActivity() {
 
         currentPub = intent.getSerializableExtra(ProfileActivity.SELECTED_IMAGE) as PublicationData
         currentUser = intent.getStringExtra(HomeActivity.CURRENT_USER).toString()
+        wallet = intent.getStringExtra(HomeActivity.WALLET).toString()
 
         setContent()
         navigationBar()
@@ -52,22 +54,26 @@ class UserPubActivity : AppCompatActivity() {
             when(item.itemId) {
                 R.id.homeNav -> {
                     startActivity(Intent(this, HomeActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 R.id.pubNav -> {
                     startActivity(Intent(this, PublicationActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 R.id.favNav -> {
                     startActivity(Intent(this, FavoriteActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 R.id.profileNav -> {
                     startActivity(Intent(this, ProfileActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 else -> {

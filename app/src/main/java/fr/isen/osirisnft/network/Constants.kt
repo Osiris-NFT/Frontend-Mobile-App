@@ -42,7 +42,7 @@ class Constants {
         }
 
         fun debugImageURL(publication_id: String): String {
-            return "/upload/$publication_id"
+            return "$DebugURL/upload/$publication_id"
         }
     }
 

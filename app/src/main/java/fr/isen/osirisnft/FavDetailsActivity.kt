@@ -25,7 +25,9 @@ class FavDetailsActivity : AppCompatActivity() {
     lateinit var binding: ActivityFavDetailsBinding
     private lateinit var currentPub: PublicationData
     lateinit var currentUser: String
+    lateinit var wallet: String
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFavDetailsBinding.inflate(layoutInflater)
@@ -33,6 +35,7 @@ class FavDetailsActivity : AppCompatActivity() {
 
         currentPub = intent.getSerializableExtra(FavoriteActivity.SELECTED_IMAGE) as PublicationData
         currentUser = intent.getStringExtra(FavoriteActivity.CURRENT_USER).toString()
+        wallet = intent.getStringExtra(FavoriteActivity.WALLET).toString()
 
         navigationBar()
         setContent()
@@ -101,27 +104,27 @@ class FavDetailsActivity : AppCompatActivity() {
         binding.navBar.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.homeNav -> {
-                    startActivity(
-                        Intent(this, HomeActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    startActivity(Intent(this, HomeActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 R.id.pubNav -> {
-                    startActivity(
-                        Intent(this, PublicationActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    startActivity(Intent(this, PublicationActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 R.id.favNav -> {
-                    startActivity(
-                        Intent(this, FavoriteActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    startActivity(Intent(this, FavoriteActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 R.id.profileNav -> {
-                    startActivity(
-                        Intent(this, ProfileActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    startActivity(Intent(this, ProfileActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 else -> {

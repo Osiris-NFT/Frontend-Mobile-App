@@ -7,6 +7,20 @@
     style="@style/background"
     tools:context=".home.HomeActivity">
 
+    <TextView
+        android:id="@+id/osirisName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/yellow"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listOfPublication"
         android:layout_width="0dp"
@@ -14,7 +28,7 @@
         app:layout_constraintBottom_toTopOf="@+id/navBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/osirisName" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navBar"

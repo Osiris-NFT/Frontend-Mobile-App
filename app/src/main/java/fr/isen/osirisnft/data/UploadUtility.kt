@@ -16,7 +16,7 @@ class UploadUtility(activity: Activity, pubId: String) {
 
     var activity = activity;
     var dialog: ProgressDialog? = null
-    private var serverURL: String = Constants.DebugURL + Constants.debugImageURL(pubId)
+    private var serverURL: String = Constants.debugImageURL(pubId)
     private val client = OkHttpClient()
 
     fun uploadFile(sourceFilePath: String, uploadedFileName: String? = null) {
@@ -24,7 +24,7 @@ class UploadUtility(activity: Activity, pubId: String) {
     }
 
     fun uploadFile(sourceFileUri: Uri, uploadedFileName: String? = null) {
-        val pathFromUri = URIPathHelper().getPath(activity,sourceFileUri)
+        val pathFromUri = URIPathHelper().getPath(activity, sourceFileUri)
         uploadFile(File(pathFromUri), uploadedFileName)
     }
 

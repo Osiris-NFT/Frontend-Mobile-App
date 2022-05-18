@@ -19,6 +19,7 @@ import org.json.JSONObject
 class ProfileActivity : AppCompatActivity() {
     lateinit var binding: ActivityProfileBinding
     lateinit var currentUser: String
+    lateinit var wallet: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +27,7 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         currentUser = intent.getStringExtra(HomeActivity.CURRENT_USER).toString()
+        wallet = intent.getStringExtra(HomeActivity.WALLET).toString()
 
         navigationBar()
         toggleButtonClick()
@@ -67,6 +69,7 @@ class ProfileActivity : AppCompatActivity() {
         val intent = Intent(this, UserPubActivity::class.java)
         intent.putExtra(SELECTED_IMAGE, img)
         intent.putExtra(CURRENT_USER, currentUser)
+        intent.putExtra(WALLET, wallet)
         startActivity(intent)
     }
 
@@ -103,6 +106,7 @@ class ProfileActivity : AppCompatActivity() {
         val intent = Intent(this, UserNftActivity::class.java)
         intent.putExtra(SELECTED_IMAGE, img)
         intent.putExtra(CURRENT_USER, currentUser)
+        intent.putExtra(WALLET, wallet)
         startActivity(intent)
     }
 
@@ -127,22 +131,26 @@ class ProfileActivity : AppCompatActivity() {
             when(item.itemId) {
                 R.id.homeNav -> {
                     startActivity(Intent(this, HomeActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 R.id.pubNav -> {
                     startActivity(Intent(this, PublicationActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 R.id.favNav -> {
                     startActivity(Intent(this, FavoriteActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 R.id.profileNav -> {
                     startActivity(Intent(this, ProfileActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 else -> {
@@ -155,5 +163,6 @@ class ProfileActivity : AppCompatActivity() {
     companion object {
         const val SELECTED_IMAGE = "SELECTED_IMAGE"
         const val CURRENT_USER = "CURRENT_USER"
+        const val WALLET = "WALLET"
     }
 }

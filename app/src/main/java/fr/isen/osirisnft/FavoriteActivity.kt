@@ -23,6 +23,7 @@ import org.json.JSONObject
 class FavoriteActivity : AppCompatActivity() {
     lateinit var binding: ActivityFavoriteBinding
     private lateinit var currentUser: String
+    lateinit var wallet: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +31,7 @@ class FavoriteActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         currentUser = intent.getStringExtra(HomeActivity.CURRENT_USER).toString()
+        wallet = intent.getStringExtra(HomeActivity.WALLET).toString()
 
         navigationBar()
         getFavImageRequest()
@@ -67,6 +69,7 @@ class FavoriteActivity : AppCompatActivity() {
         val intent = Intent(this, FavDetailsActivity::class.java)
         intent.putExtra(SELECTED_IMAGE, img)
         intent.putExtra(CURRENT_USER, currentUser)
+        intent.putExtra(WALLET, wallet)
         startActivity(intent)
     }
 
@@ -75,27 +78,27 @@ class FavoriteActivity : AppCompatActivity() {
         binding.navBar.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.homeNav -> {
-                    startActivity(
-                        Intent(this, HomeActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    startActivity(Intent(this, HomeActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 R.id.pubNav -> {
-                    startActivity(
-                        Intent(this, PublicationActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    startActivity(Intent(this, PublicationActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 R.id.favNav -> {
-                    startActivity(
-                        Intent(this, FavoriteActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    startActivity(Intent(this, FavoriteActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 R.id.profileNav -> {
-                    startActivity(
-                        Intent(this, ProfileActivity::class.java)
-                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    startActivity(Intent(this, ProfileActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser)
+                        .putExtra(HomeActivity.WALLET, wallet))
                     true
                 }
                 else -> {
@@ -108,5 +111,6 @@ class FavoriteActivity : AppCompatActivity() {
     companion object {
         const val SELECTED_IMAGE = "SELECTED_IMAGE"
         const val CURRENT_USER = "CURRENT_USER"
+        const val WALLET = "WALLET"
     }
 }

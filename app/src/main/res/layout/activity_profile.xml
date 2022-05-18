@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
+    tools:context=".profile.ProfileActivity">
 
     <TextView
         android:id="@+id/profileUserName"
@@ -54,6 +54,17 @@
             tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listOfPubImage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:numColumns="2"
+        app:layout_constraintBottom_toTopOf="@+id/navBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.0" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navBar"
         style="@style/navBarBack"
@@ -68,16 +79,5 @@
         app:menu="@menu/nav_bar">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listOfPubImage"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:numColumns="2"
-        app:layout_constraintBottom_toTopOf="@+id/navBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

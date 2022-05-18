@@ -9,11 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.*
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import fr.isen.osirisnft.data.Constants
 import fr.isen.osirisnft.data.UploadUtility
 import fr.isen.osirisnft.databinding.ActivityPublicationBinding
-import okhttp3.FormBody
-import okhttp3.RequestBody
+import fr.isen.osirisnft.home.HomeActivity
+import fr.isen.osirisnft.network.Constants
+import fr.isen.osirisnft.profile.ProfileActivity
 import org.json.JSONObject
 
 class PublicationActivity : AppCompatActivity() {
@@ -65,7 +65,7 @@ class PublicationActivity : AppCompatActivity() {
         val parameters = JSONObject()
 
         parameters.put("publication_name", title)
-        parameters.put("user_name", "$currentUser")
+        parameters.put("user_name", currentUser)
         parameters.put("description", description)
         parameters.put("content_type", "image")
         parameters.put("category", category)
@@ -95,7 +95,7 @@ class PublicationActivity : AppCompatActivity() {
             url,
             parameters,
             {
-                Log.d("testlog", "Pulication ID = " + it["publication_id"].toString())
+                Log.d("testlog", "Publication ID = " + it["publication_id"].toString())
                 Log.d("testlog", it.toString(2))
                 val pubId = it["publication_id"].toString()
 
@@ -124,6 +124,11 @@ class PublicationActivity : AppCompatActivity() {
                 }
                 R.id.pubNav -> {
                     startActivity(Intent(this, PublicationActivity::class.java)
+                        .putExtra(HomeActivity.CURRENT_USER, currentUser))
+                    true
+                }
+                R.id.favNav -> {
+                    startActivity(Intent(this, FavoriteActivity::class.java)
                         .putExtra(HomeActivity.CURRENT_USER, currentUser))
                     true
                 }

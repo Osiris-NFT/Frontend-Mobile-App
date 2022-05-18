@@ -6,9 +6,9 @@ import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import fr.isen.osirisnft.data.Constants
 import fr.isen.osirisnft.data.PublicationData
 import fr.isen.osirisnft.databinding.CellImageBinding
+import fr.isen.osirisnft.network.Constants
 
 class ImageAdapter(private val listImage: ArrayList<PublicationData>, private val imageClickListener: (PublicationData) -> Unit): RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
     class ImageViewHolder(binding: CellImageBinding): RecyclerView.ViewHolder(binding.root) {
@@ -21,7 +21,7 @@ class ImageAdapter(private val listImage: ArrayList<PublicationData>, private va
         return ImageViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ImageAdapter.ImageViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val image = listImage[position]
 
         Picasso

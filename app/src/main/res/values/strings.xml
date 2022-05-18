@@ -7,6 +7,7 @@
 
     <string name="home">Accueil</string>
     <string name="add_pub">Publier</string>
+    <string name="fav">Favoris</string>
     <string name="profile">Profil</string>
 
     <string name="welcome">Bienvenue sur Osiris NFT</string>
@@ -20,6 +21,8 @@
     <string name="description">Description</string>
     <string name="category">Catégorie</string>
     <string name="publish">Publier</string>
+
+    <string name="my_fav">Mes favoris</string>
 
     <string name="my_pub">Mes publications</string>
     <string name="my_nft">Mes NFTs</string>

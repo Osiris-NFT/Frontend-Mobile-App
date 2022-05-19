@@ -5,16 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.squareup.picasso.Picasso
 import fr.isen.osirisnft.FavoriteActivity
+import fr.isen.osirisnft.NftToPubActivity
 import fr.isen.osirisnft.PublicationActivity
 import fr.isen.osirisnft.R
-import fr.isen.osirisnft.data.PublicationData
+import fr.isen.osirisnft.data.NFTData
 import fr.isen.osirisnft.databinding.ActivityUserNftBinding
 import fr.isen.osirisnft.home.HomeActivity
 import fr.isen.osirisnft.network.Constants
 
 class UserNftActivity : AppCompatActivity() {
     lateinit var binding: ActivityUserNftBinding
-    private lateinit var currentPub: PublicationData
+    private lateinit var currentNft: NFTData
     private lateinit var currentUser: String
     lateinit var wallet: String
 
@@ -23,18 +24,29 @@ class UserNftActivity : AppCompatActivity() {
         binding = ActivityUserNftBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        currentPub = intent.getSerializableExtra(ProfileActivity.SELECTED_IMAGE) as PublicationData
-        currentUser = intent.getStringExtra(HomeActivity.CURRENT_USER).toString()
-        wallet = intent.getStringExtra(HomeActivity.WALLET).toString()
+        currentNft = intent.getSerializableExtra(ProfileActivity.SELECTED_NFT) as NFTData
+        currentUser = intent.getStringExtra(ProfileActivity.CURRENT_USER).toString()
+        wallet = intent.getStringExtra(ProfileActivity.WALLET).toString()
 
+        pubListener()
         setContent()
         navigationBar()
+    }
+
+    private fun pubListener() {
+        binding.userNftPostButton.setOnClickListener {
+            val intent = Intent(this, NftToPubActivity::class.java)
+            intent.putExtra(CURRENT_NFT, currentNft)
+            intent.putExtra(CURRENT_USER, currentUser)
+            intent.putExtra(WALLET, wallet)
+            startActivity(intent)
+        }
     }
 
     private fun setContent() {
         Picasso
             .get()
-            .load(Constants.PublicationServiceURL + currentPub.media_url)
+            .load(Constants.imageIdURL(currentNft._id))
             .into(binding.userNftImage)
     }
 
@@ -71,5 +83,11 @@ class UserNftActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    companion object {
+        const val CURRENT_NFT = "CURRENT_NFT"
+        const val CURRENT_USER = "CURRENT_USER"
+        const val WALLET = "WALLET"
     }
 }

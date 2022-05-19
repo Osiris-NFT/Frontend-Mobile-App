@@ -71,61 +71,37 @@ class ParseData {
         return arraylistofpub
     }
 
-    fun parsePublication(json: JSONObject, objectName: String): PublicationData { // parse des données d'une publication
-        val publication: JSONObject = json[objectName] as JSONObject
-        val arraylistofcom = ArrayList<CommentData>()
-        val comments = publication["comments"] as JSONArray
+    fun parseNfts(json: JSONObject): ArrayList<NFTData> { // parse des données en une liste de nfts
+        val nfts: JSONArray = json["nfts"] as JSONArray
+        val arraylistofnft = ArrayList<NFTData>()
 
-        for (y in 0 until comments.length()) {
-            Log.d("PARSE PUBLICATION: COMMENT", comments.get(y).toString())
-            val arraylistofrep = ArrayList<ReplyData>()
-            val comment = comments.get(y) as JSONObject
-            val replies = comment["replies"] as JSONArray
+        for (i in 0 until nfts.length()) {
+            Log.d("PARSE NFT: NFT", nfts.get(i).toString())
+            val nft = nfts.get(i) as JSONObject
+            val metadata = nft["metadata"] as JSONObject
 
-            for (z in 0 until replies.length()) {
-                val reply = replies.get(z) as JSONObject
-                val replydata =  ReplyData(
-                    reply["_id"] as String,
-                    reply["user"] as String,
-                    reply["publication_date"] as String,
-                    reply["target_user"] as String,
-                    reply["content"] as String,
-                    reply["likes_count"] as Int)
-                Log.d("PARSE PUBLICATION: REPLY AS REPLYDATA", replydata.toString())
-                arraylistofrep.add(replydata)
-            }
-            val commentdata = CommentData(
-                comment["_id"] as String,
-                comment["user"] as String,
-                comment["publication_date"] as String,
-                comment["content"] as String,
-                comment["likes_count"] as Int,
-                arraylistofrep,
+            val error = metadata["error"] as JSONObject
+
+            val errorData = ErrorData(
+                error["status_code"] as Int,
+                error["code"] as String,
+                error["message"] as String
             )
-            arraylistofcom.add(commentdata)
-        }
-        val arraylistofhash = ArrayList<String>()
-        val hashtags = publication["hashtags"] as JSONArray
 
-        for (w in 0 until hashtags.length()) {
-            val hashtag = hashtags.get(w) as String
-            arraylistofhash.add(hashtag)
-        }
-        val publicationdata = PublicationData(
-            publication["_id"] as String,
-            publication["publication_date"] as String,
-            publication["publication_name"] as String,
-            publication["user_name"] as String,
-            publication["content_type"] as String,
-            publication["media_url"] as String,
-            publication["category"] as String,
-            publication["description"] as String,
-            arraylistofhash,
-            publication["likes_count"] as Int,
-            arraylistofcom
-        )
-        Log.d("PARSE PUBLICATION", publicationdata.toString())
+            val metaData = MetaData(
+                metadata["response"] as String,
+                errorData
+            )
 
-        return publicationdata
+            val nftData = NFTData(
+                nft["_id"] as String,
+                nft["wallet"] as String,
+                metaData
+            )
+            arraylistofnft.add(nftData)
+
+            Log.d("PARSE NFT: NFTS AS ARRAYLIST", arraylistofnft.toString())
+        }
+        return arraylistofnft
     }
 }

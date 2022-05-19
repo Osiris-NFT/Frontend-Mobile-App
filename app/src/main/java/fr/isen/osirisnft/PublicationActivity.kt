@@ -38,12 +38,12 @@ class PublicationActivity : AppCompatActivity() {
     private fun listenAddClick() {
         binding.addPubButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
+            intent.type = "image/jpeg"
             startActivityForResult(intent, REQUEST_CODE)
         }
 
         binding.postPubButton.setOnClickListener {
-            postPubRequest()
+            uploadImageNftRequest(wallet)
 
             val intent = Intent(this, HomeActivity::class.java)
             intent.putExtra(CURRENT_USER, currentUser)
@@ -66,56 +66,9 @@ class PublicationActivity : AppCompatActivity() {
         }
     }
 
-    private fun requestBody(title: String, description: String, category:String): JSONObject {
-        val parameters = JSONObject()
-
-        parameters.put("publication_name", title)
-        parameters.put("user_name", currentUser)
-        parameters.put("description", description)
-        parameters.put("content_type", "image")
-        parameters.put("category", category)
-
-        return parameters
-    }
-
-    private fun translateCat(cat: String): String {
-        return when (cat) {
-            "Photographie" -> "photography"
-            "Pixel Art" -> "pixel-art"
-            "Dessin" -> "digital-drawing"
-            else -> "error"
-        }
-    }
-
-    private fun postPubRequest() {
-        val pubTitle = binding.inputTitle.text.toString()
-        val pubDescription = binding.inputDescription.text.toString()
-        val pubCategory = translateCat(binding.inputCategory.selectedItem.toString())
-
-        val queue = Volley.newRequestQueue(this)
-        val url = Constants.PublicationServiceURL + Constants.PostPublication
-        val parameters = requestBody(pubTitle, pubDescription, pubCategory)
-        val request = JsonObjectRequest(
-            Request.Method.POST,
-            url,
-            parameters,
-            {
-                Log.d("testlog", "Publication ID = " + it["publication_id"].toString())
-                Log.d("testlog", it.toString(2))
-                val pubId = it["publication_id"].toString()
-
-                uploadImgRequest(pubId)
-            },
-            {
-                Log.d("testlog", "$it")
-            }
-        )
-        queue.add(request)
-    }
-
-    private fun uploadImgRequest(pubId: String) {
+    private fun uploadImageNftRequest(wallet: String) {
         Log.d("testlog", "On est dans la request :)")
-        UploadUtility(this, pubId).uploadFile(this.uri)
+        UploadUtility(this, wallet).uploadFile(this.uri)
     }
 
     private fun navigationBar() {

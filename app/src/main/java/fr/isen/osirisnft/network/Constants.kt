@@ -5,7 +5,7 @@ class Constants {
         const val PublicationServiceURL = "http://34.117.49.96"
         const val DebugURL = "http://34.110.178.223"
 
-        // GET
+        /********** GET **********/
         const val NewPublications = "/api/publications/new"
         const val DateParam = "?hours_time_delta=24"
 
@@ -17,11 +17,23 @@ class Constants {
             return "$PublicationServiceURL/api/liked_publications_of/$user"
         }
 
+        fun pubByUserURL(user: String): String {
+            return "$PublicationServiceURL/api/$user/publications"
+        }
+
         fun publicationIdURL(publication_id: String): String {
             return "$PublicationServiceURL/api/publications/$publication_id"
         }
 
-        // PATCH
+        fun imageIdURL(id: String): String {
+            return "$PublicationServiceURL/api/images/$id"
+        }
+
+        fun nftByWalletURL(wallet: String): String {
+            return "$PublicationServiceURL/api/nfts/$wallet"
+        }
+
+        /********** PATCH **********/
         fun likeURL(publication_id: String, user: String): String {
             return "$PublicationServiceURL/api/publications/$publication_id/upvote_by/$user"
         }
@@ -30,19 +42,19 @@ class Constants {
             return "$PublicationServiceURL/api/publications/$publication_id/downvoted_by/$user"
         }
 
-        // POST
+        /********** POST **********/
+        const val PostPublication = "/api/publications/post"
+
         fun addCommentURL(publication_id: String): String {
             return "$PublicationServiceURL/api/publications/$publication_id/comments/post"
         }
 
-        const val PostPublication = "/api/publications/post"
-
-        fun postImageURL(publication_id: String):String {
-            return "$PublicationServiceURL/api/publications/$publication_id/upload"
-        }
-
         fun debugImageURL(publication_id: String): String {
             return "$DebugURL/upload/$publication_id"
+        }
+
+        fun postImageNFTURL(wallet: String): String {
+            return "$DebugURL/upload/$wallet"
         }
     }
 

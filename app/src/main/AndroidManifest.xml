@@ -16,6 +16,9 @@
         android:theme="@style/Theme.OsirisNFT"
         tools:targetApi="n">
         <activity
+            android:name=".NftToPubActivity"
+            android:exported="false" />
+        <activity
             android:name=".FavDetailsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
@@ -51,7 +54,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

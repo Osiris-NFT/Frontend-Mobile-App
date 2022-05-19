@@ -12,11 +12,10 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
-class UploadUtility(activity: Activity, pubId: String) {
+class UploadUtility(activity: Activity, wallet: String) {
 
     var activity = activity;
-    var dialog: ProgressDialog? = null
-    private var serverURL: String = Constants.debugImageURL(pubId)
+    private var serverURL: String = Constants.postImageNFTURL(wallet)
     private val client = OkHttpClient()
 
     fun uploadFile(sourceFilePath: String, uploadedFileName: String? = null) {
@@ -36,7 +35,6 @@ class UploadUtility(activity: Activity, pubId: String) {
                 return@Thread
             }
             val fileName: String = uploadedFileName ?: sourceFile.name
-            toggleProgressDialog(true)
             try {
                 val requestBody: RequestBody =
                     MultipartBody.Builder().setType(MultipartBody.FORM)
@@ -49,17 +47,16 @@ class UploadUtility(activity: Activity, pubId: String) {
 
                 if (response.isSuccessful) {
                     Log.d("testlog","success, " + response.message)
-                    showToast("File uploaded successfully at $serverURL")
+                    Toast.makeText(activity, "Chargement de l'image réussi !", Toast.LENGTH_SHORT).show()
                 } else {
                     Log.e("testlog", "failed")
-                    showToast("File uploading failed")
+                    Toast.makeText(activity, "Erreur de chargement de l'image...", Toast.LENGTH_SHORT).show()
                 }
             } catch (ex: Exception) {
                 ex.printStackTrace()
                 Log.e("File upload", "failed")
-                showToast("File uploading failed")
+                Toast.makeText(activity, "File uploading failed", Toast.LENGTH_SHORT).show()
             }
-            toggleProgressDialog(false)
         }.start()
     }
 
@@ -72,21 +69,4 @@ class UploadUtility(activity: Activity, pubId: String) {
         }
         return type
     }
-
-    private fun showToast(message: String) {
-        activity.runOnUiThread {
-            Toast.makeText( activity, message, Toast.LENGTH_LONG ).show()
-        }
-    }
-
-    private fun toggleProgressDialog(show: Boolean) {
-        activity.runOnUiThread {
-            if (show) {
-                dialog = ProgressDialog.show(activity, "", "Uploading file...", true);
-            } else {
-                dialog?.dismiss();
-            }
-        }
-    }
-
 }

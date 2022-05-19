@@ -26,8 +26,8 @@ class UserPubActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         currentPub = intent.getSerializableExtra(ProfileActivity.SELECTED_IMAGE) as PublicationData
-        currentUser = intent.getStringExtra(HomeActivity.CURRENT_USER).toString()
-        wallet = intent.getStringExtra(HomeActivity.WALLET).toString()
+        currentUser = intent.getStringExtra(ProfileActivity.CURRENT_USER).toString()
+        wallet = intent.getStringExtra(ProfileActivity.WALLET).toString()
 
         setContent()
         navigationBar()

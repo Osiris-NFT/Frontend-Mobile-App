@@ -24,6 +24,7 @@
     <string name="title">Titre</string>
     <string name="description">Description</string>
     <string name="category">Catégorie</string>
+    <string name="generate_nft">Générer un NFT</string>
     <string name="publish">Publier</string>
 
     <string name="my_fav">Mes favoris</string>

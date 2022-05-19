@@ -9,6 +9,7 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import fr.isen.osirisnft.*
+import fr.isen.osirisnft.data.NFTData
 import fr.isen.osirisnft.data.ParseData
 import fr.isen.osirisnft.data.PublicationData
 import fr.isen.osirisnft.databinding.ActivityProfileBinding
@@ -37,7 +38,7 @@ class ProfileActivity : AppCompatActivity() {
     /***** Publications' display *****/
     private fun getPubImageRequest() {
         val queue = Volley.newRequestQueue(this)
-        val url = Constants.PublicationServiceURL + "/api/$currentUser/publications"
+        val url = Constants.pubByUserURL(currentUser)
         val parameters = JSONObject()
         val request = JsonObjectRequest(
             Request.Method.GET,
@@ -74,9 +75,9 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     /***** NFTs' display *****/
-    private fun getNftImageRequest() {
+    private fun getNftImageRequest() { /** A MODIFIER AVEC LA REQUETE CORRESPONDANTE + DATA CLASS **/
         val queue = Volley.newRequestQueue(this)
-        val url = Constants.PublicationServiceURL + "/api/second_user/publications"
+        val url = Constants.nftByWalletURL(wallet)
         val parameters = JSONObject()
         val request = JsonObjectRequest(
             Request.Method.GET,
@@ -85,8 +86,8 @@ class ProfileActivity : AppCompatActivity() {
             {
                 Log.d("debug", it.toString(2))
 
-                val listImage = ParseData().parsePublications(it, "publications")
-                setNftImageList(listImage)
+                val listNft = ParseData().parseNfts(it)
+                setNftImageList(listNft)
             },
             {
                 Log.d("debug", "$it")
@@ -95,16 +96,16 @@ class ProfileActivity : AppCompatActivity() {
         queue.add(request)
     }
 
-    private fun setNftImageList(images: ArrayList<PublicationData>) {
+    private fun setNftImageList(nfts: ArrayList<NFTData>) { /** DIFFERENTE DATA CLASS **/
         binding.listOfPubImage.layoutManager = GridLayoutManager(this, 2)
-        binding.listOfPubImage.adapter = ImageAdapter(images) {
+        binding.listOfPubImage.adapter = NftAdapter(nfts) {
             showNftDetails(it)
         }
     }
 
-    private fun showNftDetails(img: PublicationData) {
+    private fun showNftDetails(nft: NFTData) {
         val intent = Intent(this, UserNftActivity::class.java)
-        intent.putExtra(SELECTED_IMAGE, img)
+        intent.putExtra(SELECTED_NFT, nft)
         intent.putExtra(CURRENT_USER, currentUser)
         intent.putExtra(WALLET, wallet)
         startActivity(intent)
@@ -162,6 +163,7 @@ class ProfileActivity : AppCompatActivity() {
 
     companion object {
         const val SELECTED_IMAGE = "SELECTED_IMAGE"
+        const val SELECTED_NFT = "SELECTED_NFT"
         const val CURRENT_USER = "CURRENT_USER"
         const val WALLET = "WALLET"
     }

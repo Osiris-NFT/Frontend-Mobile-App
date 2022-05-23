@@ -52,11 +52,21 @@
                 android:textAlignment="textEnd"
                 android:textColor="@color/light_grey_text" />
 
+            <Button
+                android:id="@+id/buyButton"
+                style="@style/yellowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/buy"
+                android:textAlignment="center" />
+
             <TextView
                 android:id="@+id/detailsAuthor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:text="@string/text"
                 android:textSize="16sp"

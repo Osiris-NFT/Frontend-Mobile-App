@@ -16,14 +16,17 @@
         android:theme="@style/Theme.OsirisNFT"
         tools:targetApi="n">
         <activity
-            android:name=".NftToPubActivity"
+            android:name=".NoPubActivity"
             android:exported="false" />
         <activity
-            android:name=".FavDetailsActivity"
+            android:name=".profile.NftToPubActivity"
+            android:exported="false" />
+        <activity
+            android:name=".favorite.FavDetailsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".FavoriteActivity"
+            android:name=".favorite.FavoriteActivity"
             android:exported="false" />
         <activity
             android:name=".home.HomeActivity"

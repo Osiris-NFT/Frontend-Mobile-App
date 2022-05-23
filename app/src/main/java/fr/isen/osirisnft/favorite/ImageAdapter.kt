@@ -1,4 +1,4 @@
-package fr.isen.osirisnft
+package fr.isen.osirisnft.favorite
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,7 +16,7 @@ class ImageAdapter(private val listImage: ArrayList<PublicationData>, private va
         val layout: CardView = binding.profileCard
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageAdapter.ImageViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val binding = CellImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ImageViewHolder(binding)
     }

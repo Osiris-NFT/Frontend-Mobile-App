@@ -7,6 +7,7 @@
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/drawable/ic_add_circle.xml" value="0.1635" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/drawable/ic_heart.xml" value="0.1635" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/drawable/ic_home.xml" value="0.1635" />
+        <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/drawable/ic_no_image.xml" value="0.1815" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/drawable/ic_person.xml" value="0.1635" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/drawable/ic_send.xml" value="0.1635" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/drawable/selector_light.xml" value="0.1915" />
@@ -24,6 +25,7 @@
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/layout/activity_nav_bar.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/layout/activity_nft_to_pub.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/layout/activity_no_pub.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/layout/activity_publication.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/layout/activity_user_image.xml" value="0.25416666666666665" />
@@ -32,6 +34,7 @@
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/layout/cell_comment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/layout/cell_comments.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/layout/cell_image.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/layout/cell_no_pub.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/layout/cell_publication.xml" value="0.2" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/layout/cell_reply.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/reyel/Documents/Cours/ISEN/Projet Technique Osiris NFT/Osiris NFT GitHub/Osiris-Frontend/app/src/main/res/layout/fragment_profile_pub.xml" value="0.25416666666666665" />

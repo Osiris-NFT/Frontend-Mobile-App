@@ -1,4 +1,4 @@
-package fr.isen.osirisnft
+package fr.isen.osirisnft.profile
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +12,6 @@ import fr.isen.osirisnft.data.NFTData
 import fr.isen.osirisnft.databinding.ActivityNftToPubBinding
 import fr.isen.osirisnft.home.HomeActivity
 import fr.isen.osirisnft.network.Constants
-import fr.isen.osirisnft.profile.UserNftActivity
 import org.json.JSONObject
 
 class NftToPubActivity : AppCompatActivity() {

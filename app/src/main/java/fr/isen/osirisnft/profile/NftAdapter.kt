@@ -1,4 +1,4 @@
-package fr.isen.osirisnft
+package fr.isen.osirisnft.profile
 
 import android.util.Log
 import android.view.LayoutInflater

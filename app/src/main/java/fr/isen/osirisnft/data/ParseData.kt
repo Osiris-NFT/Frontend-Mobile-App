@@ -80,22 +80,15 @@ class ParseData {
             val nft = nfts.get(i) as JSONObject
             val metadata = nft["metadata"] as JSONObject
 
-            val error = metadata["error"] as JSONObject
-
-            val errorData = ErrorData(
-                error["status_code"] as Int,
-                error["code"] as String,
-                error["message"] as String
-            )
-
             val metaData = MetaData(
-                metadata["response"] as String,
-                errorData
+                metadata["contract_address"] as String,
+                metadata["transaction_hash"] as String
             )
 
             val nftData = NFTData(
                 nft["_id"] as String,
                 nft["wallet"] as String,
+                nft["is_published"] as Boolean,
                 metaData
             )
             arraylistofnft.add(nftData)

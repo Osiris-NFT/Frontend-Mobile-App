@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -13,6 +14,8 @@ import fr.isen.osirisnft.data.NFTData
 import fr.isen.osirisnft.data.ParseData
 import fr.isen.osirisnft.data.PublicationData
 import fr.isen.osirisnft.databinding.ActivityProfileBinding
+import fr.isen.osirisnft.favorite.FavoriteActivity
+import fr.isen.osirisnft.favorite.ImageAdapter
 import fr.isen.osirisnft.home.HomeActivity
 import fr.isen.osirisnft.network.Constants
 import org.json.JSONObject
@@ -75,7 +78,7 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     /***** NFTs' display *****/
-    private fun getNftImageRequest() { /** A MODIFIER AVEC LA REQUETE CORRESPONDANTE + DATA CLASS **/
+    private fun getNftImageRequest() {
         val queue = Volley.newRequestQueue(this)
         val url = Constants.nftByWalletURL(wallet)
         val parameters = JSONObject()
@@ -96,7 +99,7 @@ class ProfileActivity : AppCompatActivity() {
         queue.add(request)
     }
 
-    private fun setNftImageList(nfts: ArrayList<NFTData>) { /** DIFFERENTE DATA CLASS **/
+    private fun setNftImageList(nfts: ArrayList<NFTData>) {
         binding.listOfPubImage.layoutManager = GridLayoutManager(this, 2)
         binding.listOfPubImage.adapter = NftAdapter(nfts) {
             showNftDetails(it)
@@ -116,12 +119,14 @@ class ProfileActivity : AppCompatActivity() {
             binding.profilePubButton.isChecked = true
             binding.profileNFTButton.isChecked = false
 
+            binding.listOfPubImage.clearDisappearingChildren()
             getPubImageRequest()
         }
         binding.profileNFTButton.setOnClickListener {
             binding.profileNFTButton.isChecked = true
             binding.profilePubButton.isChecked = false
 
+            binding.listOfPubImage.clearDisappearingChildren()
             getNftImageRequest()
         }
     }

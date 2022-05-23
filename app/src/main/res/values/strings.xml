@@ -26,11 +26,14 @@
     <string name="category">Catégorie</string>
     <string name="generate_nft">Générer un NFT</string>
     <string name="publish">Publier</string>
+    <string name="buy">Acheter</string>
 
     <string name="my_fav">Mes favoris</string>
 
     <string name="my_pub">Mes publications</string>
     <string name="my_nft">Mes NFTs</string>
+
+    <string name="no_pub">Aucune publication</string>
 
     <string-array name="categories">
         <item>Photographie</item>

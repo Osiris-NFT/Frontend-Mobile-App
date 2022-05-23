@@ -6,15 +6,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.*
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
 import fr.isen.osirisnft.data.UploadUtility
 import fr.isen.osirisnft.databinding.ActivityPublicationBinding
+import fr.isen.osirisnft.favorite.FavoriteActivity
 import fr.isen.osirisnft.home.HomeActivity
-import fr.isen.osirisnft.network.Constants
 import fr.isen.osirisnft.profile.ProfileActivity
-import org.json.JSONObject
 
 @Suppress("DEPRECATION")
 class PublicationActivity : AppCompatActivity() {

@@ -11,10 +11,10 @@ import com.android.volley.toolbox.Volley
 import fr.isen.osirisnft.*
 import fr.isen.osirisnft.data.*
 import fr.isen.osirisnft.databinding.ActivityHomeBinding
+import fr.isen.osirisnft.favorite.FavoriteActivity
 import fr.isen.osirisnft.network.Constants
 import fr.isen.osirisnft.profile.ProfileActivity
 import org.json.JSONObject
-import java.nio.file.WatchEvent
 
 
 class HomeActivity : AppCompatActivity() {

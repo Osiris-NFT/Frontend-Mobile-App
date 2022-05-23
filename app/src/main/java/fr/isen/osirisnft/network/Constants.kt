@@ -8,6 +8,7 @@ class Constants {
         /********** GET **********/
         const val NewPublications = "/api/publications/new"
         const val DateParam = "?hours_time_delta=24"
+        const val TokenByNft = "/api/nfts/token"
 
         fun isLikedURL(publication_id: String, user: String): String {
             return "$PublicationServiceURL/api/is/$publication_id/liked_by/$user"
@@ -21,16 +22,16 @@ class Constants {
             return "$PublicationServiceURL/api/$user/publications"
         }
 
-        fun publicationIdURL(publication_id: String): String {
-            return "$PublicationServiceURL/api/publications/$publication_id"
-        }
-
         fun imageIdURL(id: String): String {
             return "$PublicationServiceURL/api/images/$id"
         }
 
         fun nftByWalletURL(wallet: String): String {
             return "$PublicationServiceURL/api/nfts/$wallet"
+        }
+
+        fun nftByIdURL(id: String): String {
+            return "$PublicationServiceURL/api/nfts/metadata_of/$id"
         }
 
         /********** PATCH **********/
@@ -42,20 +43,25 @@ class Constants {
             return "$PublicationServiceURL/api/publications/$publication_id/downvoted_by/$user"
         }
 
+        fun updateNftURL(id: String, wallet: String): String {
+            return "$PublicationServiceURL/api/nfts/$id/update_wallet/$wallet"
+        }
+
         /********** POST **********/
         const val PostPublication = "/api/publications/post"
+        const val TransferNft = "/api/nfts/transfer"
 
         fun addCommentURL(publication_id: String): String {
             return "$PublicationServiceURL/api/publications/$publication_id/comments/post"
         }
 
-        fun debugImageURL(publication_id: String): String {
-            return "$DebugURL/upload/$publication_id"
+        fun postImageNFTURL(wallet: String): String {
+            return "$DebugURL/upload-nft/$wallet"
         }
 
-        fun postImageNFTURL(wallet: String): String {
-            return "$DebugURL/upload/$wallet"
+        /********** DELETE **********/
+        fun deletePubByIdURL(publication_id: String): String {
+            return "$PublicationServiceURL/api/publications/$publication_id/delete"
         }
     }
-
 }

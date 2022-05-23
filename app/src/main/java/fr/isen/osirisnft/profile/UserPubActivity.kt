@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
-import fr.isen.osirisnft.FavoriteActivity
+import fr.isen.osirisnft.favorite.FavoriteActivity
 import fr.isen.osirisnft.PublicationActivity
 import fr.isen.osirisnft.R
 import fr.isen.osirisnft.data.PublicationData

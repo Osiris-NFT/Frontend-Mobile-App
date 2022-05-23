@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 class MetaData(
-    @SerializedName("response") val response: String,
-    @SerializedName("error") val error: ErrorData
-    ): Serializable {}
+    @SerializedName("contract_address") val contract_address: String,
+    @SerializedName("transaction_hash") val transaction_hash: String
+): Serializable {}

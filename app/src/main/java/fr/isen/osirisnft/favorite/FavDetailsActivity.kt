@@ -1,4 +1,4 @@
-package fr.isen.osirisnft
+package fr.isen.osirisnft.favorite
 
 import android.content.Intent
 import android.os.Build
@@ -11,6 +11,8 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.squareup.picasso.Picasso
+import fr.isen.osirisnft.PublicationActivity
+import fr.isen.osirisnft.R
 import fr.isen.osirisnft.data.CommentData
 import fr.isen.osirisnft.data.PublicationData
 import fr.isen.osirisnft.databinding.ActivityFavDetailsBinding

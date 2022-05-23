@@ -1,4 +1,4 @@
-package fr.isen.osirisnft
+package fr.isen.osirisnft.favorite
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,15 +8,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import fr.isen.osirisnft.PublicationActivity
+import fr.isen.osirisnft.R
 import fr.isen.osirisnft.data.ParseData
 import fr.isen.osirisnft.data.PublicationData
 import fr.isen.osirisnft.databinding.ActivityFavoriteBinding
-import fr.isen.osirisnft.home.DetailsActivity
 import fr.isen.osirisnft.home.HomeActivity
 import fr.isen.osirisnft.network.Constants
 import fr.isen.osirisnft.profile.ProfileActivity
-import fr.isen.osirisnft.profile.UserPubActivity
-import okhttp3.internal.wait
 import org.json.JSONObject
 
 @Suppress("UNCHECKED_CAST")

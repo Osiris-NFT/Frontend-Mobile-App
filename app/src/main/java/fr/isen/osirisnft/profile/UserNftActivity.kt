@@ -1,17 +1,22 @@
 package fr.isen.osirisnft.profile
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.squareup.picasso.Picasso
-import fr.isen.osirisnft.FavoriteActivity
-import fr.isen.osirisnft.NftToPubActivity
+import fr.isen.osirisnft.favorite.FavoriteActivity
 import fr.isen.osirisnft.PublicationActivity
 import fr.isen.osirisnft.R
 import fr.isen.osirisnft.data.NFTData
 import fr.isen.osirisnft.databinding.ActivityUserNftBinding
 import fr.isen.osirisnft.home.HomeActivity
 import fr.isen.osirisnft.network.Constants
+import org.json.JSONObject
 
 class UserNftActivity : AppCompatActivity() {
     lateinit var binding: ActivityUserNftBinding
@@ -29,25 +34,54 @@ class UserNftActivity : AppCompatActivity() {
         wallet = intent.getStringExtra(ProfileActivity.WALLET).toString()
 
         pubListener()
-        setContent()
+        getNftTokenRequest(currentNft.metadata.transaction_hash)
         navigationBar()
     }
 
     private fun pubListener() {
-        binding.userNftPostButton.setOnClickListener {
-            val intent = Intent(this, NftToPubActivity::class.java)
-            intent.putExtra(CURRENT_NFT, currentNft)
-            intent.putExtra(CURRENT_USER, currentUser)
-            intent.putExtra(WALLET, wallet)
-            startActivity(intent)
+        if (currentNft.is_published) {
+            binding.userNftPostButton.isEnabled = false
+            binding.userNftPostButton.isClickable = false
+        } else {
+            binding.userNftPostButton.setOnClickListener {
+                val intent = Intent(this, NftToPubActivity::class.java)
+                intent.putExtra(CURRENT_NFT, currentNft)
+                intent.putExtra(CURRENT_USER, currentUser)
+                intent.putExtra(WALLET, wallet)
+                startActivity(intent)
+            }
         }
     }
 
-    private fun setContent() {
+    private fun getNftTokenRequest(hash: String) {
+        val queue = Volley.newRequestQueue(this)
+        val url = Constants.PublicationServiceURL + Constants.TokenByNft + "?hash=" + hash
+        val parameters = JSONObject()
+        val request = JsonObjectRequest(
+            Request.Method.GET,
+            url,
+            parameters,
+            {
+
+                Log.d("debug", it.toString(2))
+                setContent(it["token_id"].toString())
+            },
+            {
+                Log.d("debug", "$it")
+            }
+        )
+        queue.add(request)
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setContent(token: String) {
         Picasso
             .get()
             .load(Constants.imageIdURL(currentNft._id))
             .into(binding.userNftImage)
+
+        binding.userNftContract.text = "Adresse du contrat : " + currentNft.metadata.contract_address
+        binding.userNftToken.text = "Token : " + token
     }
 
     private fun navigationBar() {

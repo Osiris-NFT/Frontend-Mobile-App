@@ -33,6 +33,8 @@ class ProfileActivity : AppCompatActivity() {
         currentUser = intent.getStringExtra(HomeActivity.CURRENT_USER).toString()
         wallet = intent.getStringExtra(HomeActivity.WALLET).toString()
 
+        binding.profileUserName.text = currentUser
+
         navigationBar()
         toggleButtonClick()
         getPubImageRequest()
@@ -61,8 +63,6 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun setPubImageList(images: ArrayList<PublicationData>) {
-        binding.profileUserName.text = currentUser
-
         binding.listOfPubImage.layoutManager = GridLayoutManager(this, 2)
         binding.listOfPubImage.adapter = ImageAdapter(images) {
             showPubDetails(it)

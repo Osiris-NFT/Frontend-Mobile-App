@@ -40,8 +40,20 @@ class FavDetailsActivity : AppCompatActivity() {
         wallet = intent.getStringExtra(FavoriteActivity.WALLET).toString()
 
         navigationBar()
+        buyClickListener()
         setContent()
         displayComment()
+    }
+
+    private fun buyClickListener() {
+        binding.favBuyButton.setOnClickListener {
+            getNftHashRequest()
+
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.putExtra(HomeActivity.CURRENT_USER, currentUser)
+            intent.putExtra(HomeActivity.WALLET, wallet)
+            startActivity(intent)
+        }
     }
 
     private fun setContent() {
@@ -89,6 +101,90 @@ class FavDetailsActivity : AppCompatActivity() {
         parameters.put("content", commentContent)
         val request = JsonObjectRequest(
             Request.Method.POST,
+            url,
+            parameters,
+            {
+                Log.d("testlog", it.toString(2))
+            },
+            {
+                Log.d("testlog", "$it")
+            }
+        )
+        queue.add(request)
+    }
+
+    private fun getNftHashRequest() {
+        val imageId = currentPub.media_url.removePrefix("/api/images/")
+
+        val queue = Volley.newRequestQueue(this)
+        val url = Constants.nftByIdURL(imageId)
+        val parameters = JSONObject()
+        val request = JsonObjectRequest(
+            Request.Method.GET,
+            url,
+            parameters,
+            {
+                Log.d("testlog", it.toString(2))
+
+                Log.d("testlog", it.getJSONObject("metadata").get("transaction_hash").toString())
+
+                buyNftRequest(it.getJSONObject("metadata").get("transaction_hash").toString(), imageId)
+            },
+            {
+                Log.d("testlog", "$it")
+            }
+        )
+        queue.add(request)
+    }
+
+    private fun buyNftRequest(hash: String, imageId: String) {
+        val queue = Volley.newRequestQueue(this)
+        val url = Constants.PublicationServiceURL + Constants.TransferNft
+        val parameters = JSONObject()
+        parameters.put("hash", hash)
+        parameters.put("address", wallet)
+        Log.d("testlog", parameters.toString())
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            url,
+            parameters,
+            {
+                Log.d("testlog", it.toString(2))
+
+                updateNftRequest(imageId)
+            },
+            {
+                Log.d("testlog", "$it")
+            }
+        )
+        queue.add(request)
+    }
+
+    private fun updateNftRequest(imageId: String) {
+        val queue = Volley.newRequestQueue(this)
+        val url = Constants.updateNftURL(imageId, wallet)
+        val parameters = JSONObject()
+        val request = JsonObjectRequest(
+            Request.Method.PATCH,
+            url,
+            parameters,
+            {
+                Log.d("testlog", it.toString(2))
+                deletePubRequest()
+            },
+            {
+                Log.d("testlog", "$it")
+            }
+        )
+        queue.add(request)
+    }
+
+    private fun deletePubRequest() {
+        val queue = Volley.newRequestQueue(this)
+        val url = Constants.deletePubByIdURL(currentPub._id)
+        val parameters = JSONObject()
+        val request = JsonObjectRequest(
+            Request.Method.DELETE,
             url,
             parameters,
             {

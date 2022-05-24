@@ -152,7 +152,7 @@ class DetailsActivity : AppCompatActivity() {
             parameters,
             {
                 Log.d("testlog", it.toString(2))
-
+                
                 updateNftRequest(imageId)
             },
             {

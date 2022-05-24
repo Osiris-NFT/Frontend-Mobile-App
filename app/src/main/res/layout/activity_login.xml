@@ -59,7 +59,6 @@
         android:ems="10"
         android:hint="@string/wallet"
         android:inputType="textFilter"
-        android:text="@string/existing_wallet_yoann"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

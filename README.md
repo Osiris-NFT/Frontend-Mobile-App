@@ -9,4 +9,5 @@ This repository contains the Osiris NFT frontend.
 4. Build the app and run it (on an emulator or your smartphone)
 
 *To test the finished app :*               
+
 Download the [APK](https://github.com/Osiris-NFT/Frontend-Mobile-App/blob/main/app/release/app-release.apk) and install the app on your smartphone.

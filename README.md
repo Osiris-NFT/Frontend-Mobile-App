@@ -7,8 +7,7 @@ This repository contains the Osiris NFT frontend.
 2. Download the repository
 3. Import it in Android Studio
 4. Build the app and run it (on an emulator or your smartphone)
-
-
+             
 
 *To test the finished app :*               
 
